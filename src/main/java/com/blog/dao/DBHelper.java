@@ -17,14 +17,37 @@ public class DBHelper {
     public Connection conn = null;
     public PreparedStatement pst = null;
 
-    public DBHelper(String sql){
+    private static DBHelper dbHelper = null;
+
+    public DBHelper(){
         try{
             Class.forName(name);
             conn = DriverManager.getConnection(url, user, pwd);//获取连接
-            pst = conn.prepareStatement(sql);//准备执行语句
+            //pst = conn.prepareStatement(sql);//准备执行语句
         }catch (Exception e){
             e.fillInStackTrace();
         }
+    }
+
+    public static DBHelper getInstance(){
+        if(dbHelper == null){
+            dbHelper = new DBHelper();
+        }
+        return dbHelper;
+    }
+
+    public Connection getConn(){
+        return conn;
+    }
+
+    public PreparedStatement getPst(String sql){
+        try {
+            pst = conn.prepareStatement(sql);
+        } catch (SQLException e) {
+            System.out.println("getPst fail!");
+            e.printStackTrace();
+        }
+        return pst;
     }
 
     public void close(){
