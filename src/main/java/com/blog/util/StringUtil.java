@@ -14,7 +14,7 @@ public class StringUtil {
      * @param str
      * @return
      */
-    public boolean isMobile(String str){
+    public static boolean isMobile(String str){
         if(str.length() != MOBILE_LEN)
             return false;
         Pattern pattern = Pattern.compile("^[1][3,4,5,7,8][0-9]{9}$"); // 验证手机号
@@ -27,7 +27,7 @@ public class StringUtil {
      * @param str
      * @return
      */
-   public boolean isPhone(String str){
+   public static boolean isPhone(String str){
         Pattern pattern = Pattern.compile("^[0-9]{4}-[0-9]{6}");
         Matcher matcher = pattern.matcher(str);
         return matcher.matches();

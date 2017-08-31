@@ -1,6 +1,7 @@
 package com.blog.dao;
 
 import com.blog.bean.User;
+import com.blog.util.StringUtil;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
@@ -28,6 +29,9 @@ public class UserDaoImpl implements UserDao{
         String name = user.getName();
         String pwd = user.getPassword();
         String phone = user.getPhone();
+        if(!StringUtil.isPhone(phone) && !StringUtil.isMobile(phone)){
+            return false;
+        }
         String email = user.getEmail();
         String sql = "insert into user(id,name,password,phone,email) values(?,?,?,?,?)";
         try{
