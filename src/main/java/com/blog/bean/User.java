@@ -1,24 +1,25 @@
 package com.blog.bean;
 
+import com.blog.dao.anno.DBField;
+import com.blog.dao.anno.DBTable;
+
 /**
  * Created by wangshaonan on 17/8/29.
  */
-public class User {
+@DBTable("user")
+public class User extends DBDomain {
+
+    @DBField("id")
     private Integer id;
+
+    @DBField("name")
     private String name;
+    @DBField("password")
     private String password;
+    @DBField("phone")
     private String phone;
+    @DBField("email")
     private String email;
-
-    public User(){}
-
-    public User(Integer id, String name, String password, String phone, String email) {
-        this.id = id;
-        this.name = name;
-        this.password = password;
-        this.phone = phone;
-        this.email = email;
-    }
 
     public Integer getId() {
         return id;
